@@ -22,6 +22,18 @@ impl Cpu {
       memory: [0; 4096],
     }
   }
+
+  fn load_program(&mut self, program: Vec<u8>) {
+    let mut data = vec![0; 0x200];
+
+    for byte in program {
+      data.push(byte);
+    }
+
+    for (index, &byte) in data.iter().enumerate() {
+      self.memory[index] = byte;
+    }
+  }
 }
 
 pub fn new() {
